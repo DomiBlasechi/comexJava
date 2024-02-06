@@ -10,72 +10,109 @@ import java.net.URISyntaxException;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Locale;
+import java.util.List;
+import java.util.ArrayList;
 
 public class Main {
 
     private static final Logger logger = LoggerFactory.getLogger(Main.class);
 
+//        Pedido[] pedidos = ProcessadorDeCsv.processaArquivo("pedidos.csv");
+//
+//        int totalDeProdutosVendidos = 0;
+//        int totalDePedidosRealizados = 0;
+//        BigDecimal montanteDeVendas = BigDecimal.ZERO;
+//        Pedido pedidoMaisBarato = null;
+//        Pedido pedidoMaisCaro = null;
+//
+//        String[] categoriasProcessadas = new String[10];
+//        int totalDeCategorias = 0;
+//
+//        for (int i = 0; i < pedidos.length; i++) {
+//            Pedido pedidoAtual = pedidos[i];
+//
+//            if (pedidoAtual == null) {
+//                break;
+//            }
+//
+//            if (pedidoMaisBarato == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade()))) < 0) {
+//                pedidoMaisBarato = pedidoAtual;
+//            }
+//
+//            if (pedidoMaisCaro == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade()))) > 0) {
+//                pedidoMaisCaro = pedidoAtual;
+//            }
+//
+//            montanteDeVendas = montanteDeVendas.add(pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())));
+//            totalDeProdutosVendidos += pedidoAtual.getQuantidade();
+//            totalDePedidosRealizados++;
+//
+//            boolean jahProcessouCategoria = false;
+//            for (int j = 0; j < categoriasProcessadas.length; j++) {
+//                if (pedidoAtual.getCategoria().equalsIgnoreCase(categoriasProcessadas[j])) {
+//                    jahProcessouCategoria = true;
+//                }
+//            }
+//
+//            if (!jahProcessouCategoria) {
+//                totalDeCategorias++;
+//
+//                if (categoriasProcessadas[categoriasProcessadas.length - 1] != null) {
+//                    categoriasProcessadas = Arrays.copyOf(categoriasProcessadas, categoriasProcessadas.length * 2);
+//                } else {
+//                    for (int k = 0; k < categoriasProcessadas.length; k++) {
+//                        if (categoriasProcessadas[k] == null) {
+//                            categoriasProcessadas[k] = pedidoAtual.getCategoria();
+//                            break;
+//                        }
+//                    }
+//                }
+//            }
+//        }
+//
+//        logger.info("##### RELATÓRIO DE VALORES TOTAIS #####");
+//        logger.info("TOTAL DE PEDIDOS REALIZADOS: {}", totalDePedidosRealizados);
+//        logger.info("TOTAL DE PRODUTOS VENDIDOS: {}", totalDeProdutosVendidos);
+//        logger.info("TOTAL DE CATEGORIAS: {}", totalDeCategorias);
+//        logger.info("MONTANTE DE VENDAS: {}", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(montanteDeVendas.setScale(2, RoundingMode.HALF_DOWN)));
+//        logger.info("PEDIDO MAIS BARATO: {} ({})", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisBarato.getProduto());
+//        logger.info("PEDIDO MAIS CARO: {} ({})\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisCaro.getProduto());
+//        logger.info("### FIM DO RELATÓRIO ###");
+
+
+    // Entrega 4 - Impressão dos dados dos produtos:
+
     public static void main(String[] args) throws IOException, URISyntaxException {
-        Pedido[] pedidos = ProcessadorDeCsv.processaArquivo("pedidos.csv");
+        Produto celular1 = new Produto();
+        celular1.setNome("iPhone 13");
+        celular1.setDescricao("Celular iPhone 13 com 256gb.");
+        celular1.setPrecoUnitario(13999.99);
+        celular1.setQuantidade(5);
 
-        int totalDeProdutosVendidos = 0;
-        int totalDePedidosRealizados = 0;
-        BigDecimal montanteDeVendas = BigDecimal.ZERO;
-        Pedido pedidoMaisBarato = null;
-        Pedido pedidoMaisCaro = null;
+        Produto celular2 = new Produto();
+        celular2.setNome("Samsung A54");
+        celular2.setDescricao("Celular Samsung A54 com 256gb.");
+        celular2.setPrecoUnitario(1979.99);
+        celular2.setQuantidade(10);
 
-        String[] categoriasProcessadas = new String[10];
-        int totalDeCategorias = 0;
+        System.out.println(celular1.toString());
+        System.out.println(celular2.toString());
 
-        for (int i = 0; i < pedidos.length; i++) {
-            Pedido pedidoAtual = pedidos[i];
+        //Entrega 3 - Comparando os dois produtos:
 
-            if (pedidoAtual == null) {
-                break;
-            }
+        System.out.println("Comparação entre os produtos é " + (celular1 == celular2) + "\n************************");
 
-            if (pedidoMaisBarato == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade()))) < 0) {
-                pedidoMaisBarato = pedidoAtual;
-            }
+        // Entrega 8 - Lista de desejos
+        
+        ArrayList<String> listaDesejos = new ArrayList<>();
+        listaDesejos.add(celular1.getNome());
+        listaDesejos.add(celular2.getNome());
 
-            if (pedidoMaisCaro == null || pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())).compareTo(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade()))) > 0) {
-                pedidoMaisCaro = pedidoAtual;
-            }
+        System.out.println("Sua lista de desejos é " + listaDesejos);
 
-            montanteDeVendas = montanteDeVendas.add(pedidoAtual.getPreco().multiply(new BigDecimal(pedidoAtual.getQuantidade())));
-            totalDeProdutosVendidos += pedidoAtual.getQuantidade();
-            totalDePedidosRealizados++;
-
-            boolean jahProcessouCategoria = false;
-            for (int j = 0; j < categoriasProcessadas.length; j++) {
-                if (pedidoAtual.getCategoria().equalsIgnoreCase(categoriasProcessadas[j])) {
-                    jahProcessouCategoria = true;
-                }
-            }
-
-            if (!jahProcessouCategoria) {
-                totalDeCategorias++;
-
-                if (categoriasProcessadas[categoriasProcessadas.length - 1] != null) {
-                    categoriasProcessadas = Arrays.copyOf(categoriasProcessadas, categoriasProcessadas.length * 2);
-                } else {
-                    for (int k = 0; k < categoriasProcessadas.length; k++) {
-                        if (categoriasProcessadas[k] == null) {
-                            categoriasProcessadas[k] = pedidoAtual.getCategoria();
-                            break;
-                        }
-                    }
-                }
-            }
-        }
-
-        logger.info("##### RELATÓRIO DE VALORES TOTAIS #####");
-        logger.info("TOTAL DE PEDIDOS REALIZADOS: {}", totalDePedidosRealizados);
-        logger.info("TOTAL DE PRODUTOS VENDIDOS: {}", totalDeProdutosVendidos);
-        logger.info("TOTAL DE CATEGORIAS: {}", totalDeCategorias);
-        logger.info("MONTANTE DE VENDAS: {}", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(montanteDeVendas.setScale(2, RoundingMode.HALF_DOWN)));
-        logger.info("PEDIDO MAIS BARATO: {} ({})", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisBarato.getProduto());
-        logger.info("PEDIDO MAIS CARO: {} ({})\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisCaro.getProduto());
-        logger.info("### FIM DO RELATÓRIO ###");
     }
+
+
+
+
 }
