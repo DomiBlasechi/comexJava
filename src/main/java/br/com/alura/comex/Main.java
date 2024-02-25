@@ -1,5 +1,4 @@
 package br.com.alura.comex;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -10,6 +9,10 @@ import java.net.URISyntaxException;
 import java.text.NumberFormat;
 import java.util.Arrays;
 import java.util.Locale;
+<<<<<<< Updated upstream
+=======
+import java.util.Scanner;
+>>>>>>> Stashed changes
 
 public class Main {
 
@@ -77,5 +80,47 @@ public class Main {
         logger.info("PEDIDO MAIS BARATO: {} ({})", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisBarato.getPreco().multiply(new BigDecimal(pedidoMaisBarato.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisBarato.getProduto());
         logger.info("PEDIDO MAIS CARO: {} ({})\n", NumberFormat.getCurrencyInstance(new Locale("pt", "BR")).format(pedidoMaisCaro.getPreco().multiply(new BigDecimal(pedidoMaisCaro.getQuantidade())).setScale(2, RoundingMode.HALF_DOWN)), pedidoMaisCaro.getProduto());
         logger.info("### FIM DO RELATÓRIO ###");
+<<<<<<< Updated upstream
     }
+=======
+
+        int opcao = 0;
+        Scanner menu = new Scanner(System.in);
+        while (opcao != 4) {
+            System.out.print("##------BEM-VINDO A COMEX!!-----##\n\n");
+            System.out.print("|----------------------------------|\n");
+            System.out.print("| Opção 1 - Clientes          |\n");
+            System.out.print("| Opção 2 - Produtos          |\n");
+            System.out.print("| Opção 3 - Cadastrar cliente |\n");
+            System.out.print("| Opção 4 - Sair              |\n");
+            System.out.print("|-----------------------------|\n");
+            System.out.println("Digite uma opção: ");
+            try {
+                opcao = Integer.parseInt(menu.nextLine());
+                switch (opcao) {
+                    case 1:
+                        System.out.print("\nExibindo lista de clientes.\n");
+                        break;
+                    case 2:
+                        System.out.print("\nExibindo lista de produtos.\n");
+                        break;
+                    case 3:
+                        System.out.print("\nCadastro de novos clientes.\n");
+                        break;
+                    case 4:
+                        System.out.print("\nVocê escolheu encerrar a aplicação.");
+                        break;
+                    default:
+                        System.out.print("\nOpção inválida! Digite um número de 1 a 4.");
+                        break;
+                }
+            }
+            catch (NumberFormatException e)
+            {
+                System.out.println("Caractere não permitido, digite de 1 a 4");
+            }
+        }
+    }
+
+>>>>>>> Stashed changes
 }
